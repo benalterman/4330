@@ -1,13 +1,3 @@
-<html>
-<body>
-<form action="users.php" method="GET">
-<input id="search" name="search" type="text" placeholder="Type here">
-<input id="submit" type="submit" value="Search">
-</form>
-</body>
-</html>
-
-
 <?php 
 
 $connection = mysql_connect("localhost","root","");
