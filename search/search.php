@@ -1,13 +1,15 @@
-<?php 
+<?php
+$search_value=$_POST["search"];
+$con=new mysqli($servername,$username,$password,$dbname);
+if($con->connect_error){
+    echo 'Connection Faild: '.$con->connect_error;
+    }else{
+        $sql="select * from information where First_Name like '%$search_value%'";
 
-$connection = mysql_connect("localhost","root","");
+        $res=$con->query($sql);
 
-mysql_select_db("blog1")or die(mysql_error());
-
-$safe_value = mysql_real_escape_string($_POST['search']);
-
-$result = mysql_query("SELECT username FROM member WHERE `username` LIKE %$safe_value%");
-while ($row = mysql_fetch_assoc($result)) {
-    echo "<div id='link' onClick='addText(\"".$row['username']."\");'>" . $row['username'] . "</div>";  
-}
+        while($row=$res->fetch_assoc()){
+            echo 'First_name:  '.$row["First_Name"];
+            }       
+        }
 ?>
