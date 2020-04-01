@@ -1,8 +1,8 @@
 <?php
 $search_value=$_POST["search"];
-$con=new mysqli($servername,$username,$password,$dbname);
+require_once '/database/connect.php';
 if($con->connect_error){
-    echo 'Connection Faild: '.$con->connect_error;
+    echo 'Connection Failed: '.$con->connect_error;
     }else{
         $sql="select * from information where First_Name like '%$search_value%'";
 
