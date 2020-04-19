@@ -14,12 +14,21 @@
                 border: 1px solid #ccc;
                 box-sizing: border-box;
             }
+            
+            input[type=submit] {
+                background-color: grey;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                cursor: pointer;
+                width: 50%;
+            }
 
             /*Small class to align "Employee Login" text*/
             h2.center{
                 text-align: center;
             }
-            
+
             /*Adds VFX to input boxes of type text and password when selected using the cursor*/
             input[type=text]:focus input[type=password]:focus{
                 border: 3px solid lightblue;
@@ -30,30 +39,25 @@
                 border: 0.5px solid black;
             }
 
-            button {
-                background-color: #4CAF50;
+            a {
+                background-color: grey;
                 color: white;
                 padding: 14px 20px;
                 margin: 8px 0;
                 border: none;
                 cursor: pointer;
-                width: 100%;
+                width: 50%;
+            }
+
+            a:hover {
+                opacity: 0.8;
+                border: 0.5px solid black;
             }
 
             /*Adds VFX to buttons when hovered over with the cursor*/
             button:hover {
                 opacity: 0.8;
                 border: 0.5px solid black;
-            }
-
-            .adminbtn {
-                background-color:#0000FF;
-                color: white;
-                padding: 12px 20px;
-                margin: 8px 0;
-                border: none;
-                cursor: pointer;
-                width: 100%;
             }
 
             /*Properly aligns image container*/
@@ -66,28 +70,39 @@
             img.avatar {
                 width: 15%;
                 border-radius: 50%;
+                border-width: 4px;
+                border: lightblue;
             }
 
             .container {
                 padding: 12px;
-            }
-
-            span.psw {
                 float: center;
-                padding-top: 16px;
+            }
+            
+            .container a{
+                background-color: grey;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                height: 10px;
+                width: 20px;
+                border: none;
+                cursor: pointer;
+            }
+            
+            .container button{
+                background-color: grey;
+                color: white;
+                padding: 12px 12px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 50%;
             }
 
-            /*button1, button2, and container are all components to align Login and "Are you an Employer?" buttons side-by-side*/
-            #button1{
-                width: 300px;
-                height: 40px;
-            }
-            #button2{
-                width: 300px;
-                height: 40px;
-            }
-            #container{
-                text-align: center;
+            .signup {
+                float: left;
+                padding: 12px;
             }
 
         </style>
@@ -95,9 +110,9 @@
     <!-- HTML -->
     <body>
 
-        <h2 class="center">Employee Login</h2>
+        <h2 class="center">Login</h2>
 
-        <form action="/AuthenticateLogin.php" method="post">
+        <form action="/Login.php" method="post">
 
             <div class="imgcontainer">
                 <img src="4330LoginIcon.jpg" alt="Avatar" class="avatar">
@@ -108,19 +123,19 @@
                 <input type="text" placeholder="Enter your username..." name="user_id" id="user_id" required>
 
                 <label for="user_pass"><b>Password</b></label>
-                <input type="password" placeholder="Enter your password..." name="user_pass" id="user_pass" required>
+                <input type="password" placeholder="Enter your ID Number..." name="user_num" id="user_num" required>
 
                 <div id="container">
                     <button type="submit" id="button1">Login</button>
-                    <button type="button" class="adminbtn" id="button2">Are you an Employer?</button>
+                    <a href="EmployerLogin.html" id="admnbutton" style="text-decoration: none">Are you an Employer?</a>
                 </div>
                 <label>
                     <input type="checkbox" checked="checked" name="remember">Keep me signed in
                 </label>
             </div>
 
-            <div class="container" style="background-color:#f1f1f1">
-                <span class="psw"><a href="#">Forgot password?</a></span>
+            <div class="signup">
+                <a href="../login/Signup.html" style="text-decoration: none">Create account?</a>
             </div>
         </form>
 
