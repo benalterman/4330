@@ -1,5 +1,114 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            form {border: 3px solid #f1f1f1;}
+
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+
+            /*Small class to align "Employee Login" text*/
+            h2.center{
+                text-align: center;
+            }
+            
+            /*Adds VFX to input boxes of type text and password when selected using the cursor*/
+            input[type=text]:focus input[type=password]:focus{
+                border: 3px solid lightblue;
+            }
+
+            /*Adds VFX to input boxes of type text and password when hovered over using the cursor*/
+            input[type=text]:hover input[type=password]:hover{
+                border: 0.5px solid black;
+            }
+
+            button {
+                background-color: grey;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            /*Adds VFX to buttons when hovered over with the cursor*/
+            button:hover {
+                opacity: 0.8;
+                border: 0.5px solid black;
+            }
+
+            /*Properly aligns image container*/
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+            }
+
+            /*Sets the size and radius of the borders for the image*/
+            img.avatar {
+                width: 15%;
+                border-radius: 50%;
+            }
+
+            .container {
+                padding: 12px;
+            }
+
+            span.psw {
+                float: center;
+                padding-top: 16px;
+            }
+
+            /*button1, button2, and container are all components to align Login and "Are you an Employer?" buttons side-by-side*/
+            #button1{
+                width: 300px;
+                height: 40px;
+            }
+            #button2{
+                width: 300px;
+                height: 40px;
+            }
+            #container{
+                text-align: center;
+            }
+
+        </style>
     </head>
+    <!-- HTML -->
+    <body>
+
+        <h2 class="center">Employer Login</h2>
+
+        <form action="/EmployerLogin.php" method="post">
+
+            <div class="imgcontainer">
+                <img src="4330LoginIcon.jpg" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+                <label for="user_id"><b>Username</b></label>
+                <input type="text" placeholder="Enter your username..." name="user_id" id="user_id" required>
+
+                <label for="user_pass"><b>Password</b></label>
+                <input type="password" placeholder="Enter your password..." name="user_pass" id="user_pass" required>
+
+                <div id="container">
+                    <button type="submit" id="loginbtn" name="admnlogin">Login</button>
+                </div>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember">Keep me signed in
+                </label>
+            </div>
+
+        </form>
+
+    </body>
 </html>
