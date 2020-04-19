@@ -1,13 +1,13 @@
 <?php
   require_once '../database/connect.php';
 
-  if (!isset($_POST['applicantSearch']))
-    header("Location: ads.index.php");
+  if (!isset($_POST['/search/applicantSearch']))
+    header("Location: /search/applicantSearch");
 
   // create the connection object
   $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-  $_POST['applicantSearch'] = mysqli_real_escape_string($conn, $_POST['applicantSearch']);
-  $search_sql = "SELECT * FROM `Job Opening` WHERE `applicants_id` LIKE '%" . $_POST['applicantSearch'] . "%' OR `description` LIKE '%".$_POST['search']."%'";
+  $_POST['/search/applicantSearch'] = mysqli_real_escape_string($conn, $_POST['/search/applicantSearch']);
+  $search_sql = "SELECT * FROM `Job Opening` WHERE `applicants_id` LIKE '%" . $_POST['/search/applicantSearch'] . "%' OR `description` LIKE '%".$_POST['/search/applicantSearch']."%'";
   $result = mysqli_query($conn, $search_sql);
   if(mysqli_num_rows($result) > 0) {    
     $search_rs = mysqli_fetch_assoc($result);
