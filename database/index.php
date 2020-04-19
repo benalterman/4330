@@ -19,7 +19,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/index.php">Home</a></li>
                     <li><a href="/reporting">Reporting</a></li>
-                    <li><a href="/searchCommitteeSearch">Search Committee Search</a></li>
+                    <li><a href="/search.php">Search</a></li>
                     <li><a href="/applicantSearch">Applicant Search</a></li>
                     <li><a href="/maintenance.html">Database Maintenance</a></li>
                 </ul>
