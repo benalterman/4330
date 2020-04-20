@@ -3,8 +3,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSS -->
         <style>
-            body {font-family: Arial, Helvetica, sans-serif;}
-            form {border: 3px solid #f1f1f1;}
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background: #737CA1;
+            }
+            form {
+                border: 3px solid black;
+                width: 75%;
+                position: relative;
+                margin: auto;
+            }
+            
+            form label {
+                background: white;
+                padding: 5px;
+                border-radius: 10px;
+            }
 
             input[type=text], input[type=password] {
                 width: 100%;
@@ -13,16 +27,21 @@
                 display: inline-block;
                 border: 1px solid #ccc;
                 box-sizing: border-box;
+                font-family: Courier, monospace;
             }
 
             /*Small class to align "Employee Login" text*/
             h2.center{
                 text-align: center;
+                background: white;
+                width: 25%;
+                margin: auto;
             }
             
             /*Adds VFX to input boxes of type text and password when selected using the cursor*/
             input[type=text]:focus input[type=password]:focus{
                 border: 3px solid lightblue;
+                font-family: Courier, monospace;
             }
 
             /*Adds VFX to input boxes of type text and password when hovered over using the cursor*/
@@ -60,7 +79,9 @@
 
             .container {
                 padding: 12px;
+                border: black;
             }
+            
 
             span.psw {
                 float: center;

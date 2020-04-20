@@ -28,7 +28,7 @@ if(isset($_POST['signupbtn'])) {
         exit();
     }
     else {
-        $sql = "SELECT username FROM Applicant WHERE username=? AND password=?";
+        $sql = "SELECT username FROM Applicantw WHERE username=? AND password=?";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../signup.html?error=sqlerr");
@@ -46,7 +46,7 @@ if(isset($_POST['signupbtn'])) {
             }
             else {
                 /*Saves the combination if not already taken*/
-                $sql = "INSERT INTO Applicant (email, password, name, last_name) VALUES (?, ?, ?, ?,?)";
+                $sql = "INSERT INTO Applicants (email, password, name, last_name) VALUES (?, ?, ?, ?,?)";
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../signup.html?error=sqlerr");
