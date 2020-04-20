@@ -167,6 +167,7 @@ body {
 .navbar .search-container button:hover {
   background: #ccc;
 }
+}
 
 @media screen and (max-width: 600px) {
   .navbar .search-container {
@@ -183,30 +184,22 @@ body {
   .navbar input[type=text] {
     border: 1px solid #ccc;  
   }
+}
 
 </style>
 </head>
 <body>
 
 <div class="navbar">
-  <a href="#">Home</a>
-  <a href="#">Jobs</a>
-  <a href="#">Messaging</a>
-  <a href="#">Notifications</a>
-  <a href="#" class="right">Profile</a>
-  <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
+    <a href="/homepage/employeeHomepage.html">Home</a>
+    <a href="/database/jobSearch.php">Job Search</a>
+    <a href="#">Messaging</a>
+    <a href="#">Notifications</a>
+    <a href="#" class= "right">Log Out</a>
+    <a href="/homepage/employeeProfile.html" class="right">Profile</a>
 </div>
 
-<div class="navbar">
-  <b href="#">Job Search</b>
-  <b href="#">Company Search</b>
-  <b href="#">Career Search</b>
-</div>
+
 
 <div class="container">
     <h1>Edit Profile</h1>
@@ -215,7 +208,7 @@ body {
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
-                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                <img src="/login/4330LoginIcon.jpg" class="avatar img-circle" alt="avatar">
                 <h6>Upload a different photo...</h6>
                 <input type="file" class="form-control">
             </div>
