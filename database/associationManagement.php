@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/index.php">Home </a>
+                <a class="nav-link" href="/employerWelcome.php">Home </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/reporting">Reporting</a>
@@ -58,6 +58,16 @@
                 </div>
             </li>
             </ul>
+        </div>
+        <div>
+            <span class="navbar-text" style="padding:5px">
+                <?php echo $_SESSION['ID_Number']; ?>
+            </span>
+        </div>
+        <div align="right">
+            <form class="form-inline" action="/index.html">
+                <button class="btn btn-sm btn-outline-secondary" type="submit">Log Out</button>
+            </form>
         </div>
     </nav>
         <h1 style="margin-left:1%">Association Management</h1>

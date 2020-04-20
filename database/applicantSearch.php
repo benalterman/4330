@@ -2,6 +2,7 @@
     if(isset($_POST['name'])){
         $name = $_POST["name"];
     }
+    $_SESSION['ID_Number'] = "tyler";
 ?>
 
 <!DOCTYPE html>
@@ -42,21 +43,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/employerWelcome.php">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reporting.php">Reporting</a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/index.php">Home </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/reporting">Reporting</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/applicantSearch.php">Applicant Search</a>
+                <a class="nav-link" href="/applicantSearch.php">Applicant Search<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Database Maintenance
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item active" href="/associationManagement.php">Manage Associations<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item" href="/associationManagement.php">Manage Associations</a>
                 <a class="dropdown-item" href="/companyManagement.php">Manage Companies</a>
                 <a class="dropdown-item" href="/employeeManagement.php">Manage Employees</a>
                 <a class="dropdown-item" href="/jobManagement.php">Manage Jobs</a>
@@ -66,29 +67,43 @@
             </li>
             </ul>
         </div>
+        <div>
+            <span class="navbar-text" style="padding:5px">
+                <?php echo $_SESSION['ID_Number']; ?>
+            </span>
+        </div>
+        <div align="right">
+            <form class="form-inline" action="/index.html">
+                <button class="btn btn-sm btn-outline-secondary" type="submit">Log Out</button>
+            </form>
+        </div>
     </nav>
 
         <h1 style="margin-left:1%">Applicant Search</h1>
-		<div class="card text-center">
-			<div class="card-header">
+        <div class="card text-right">
+        <div class="card-header">
             <form method='GET' action="<?php echo $_SERVER['$PHP_SELF'];?>">
-                <input type="text" value="" name="name">
+                <input type="text" value="" name="name" placeholder="Name of applicant">
                 <input type='submit' value='Search'>
             </form>
 			</div>
+        </div>
+		<div class="card text-center">
 			<div class="card-body">
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Address</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Resume</th>
+                            <th>Email</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            print("<h4>Associations</h4>");
+                            print("<h4>Applicants</h4>");
                             require_once 'connect.php';
                             if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                                 $page_no = $_GET['page_no'];
@@ -105,19 +120,35 @@
                             $previous_page = $page_no - 1;
                             $next_page = $page_no + 1;
                             $adjacents = "4"; 
-
-                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Association` WHERE name LIKE '%" . $name . "%'");
+                            
+                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Applicants` WHERE name LIKE '%" . $name . "%' OR last_name LIKE '%" . $name . "%'");
                             $total_records = mysqli_fetch_array($result_count);
                             $total_records = $total_records['total_records'];
-                            $total_no_of_pages = ceil($total_records / $total_records_per_page);
+                            $result_count2 = mysqli_query($link, "SELECT COUNT(*) As total_records2 FROM `Employees` WHERE emp_name LIKE '%" . $name . "%' OR emp_last_name LIKE '%" . $name . "%'");
+                            $total_records2 = mysqli_fetch_array($result_count);
+                            $total_records2 = $total_records['total_records'];
+                            $total_no_of_pages = ceil(($total_records + $total_records2) / $total_records_per_page);
                             $second_last = $total_no_of_pages - 1; // total page minus 1
-
-                            $result = mysqli_query($link,"SELECT * FROM `Association` WHERE name LIKE '%" . $name . "%' LIMIT $offset, $total_records_per_page ");
+                            
+                            $result = mysqli_query($link,"SELECT * FROM `Employee` WHERE emp_name LIKE '%" . $name . "%' OR emp_last_name LIKE '%" . $name . "%' LIMIT $offset, $total_records_per_page ");
+                            while($row = mysqli_fetch_array($result)){
+                                echo "<tr>
+                                        <td>".$row['emp_name']."</td>
+                                        <td>".$row['emp_last_name']."</td>
+                                        <td>".$row['emp_resume']."</td>
+                                        <td>".$row['emp_email']."</td>
+                                        <td>Employee</td>
+                                        <td><a href='/deleteAssociation.php?id=".$row['association_id'] . "'>" . "DELETE</a></td>
+                                      </tr>";
+                            }
+                            $result = mysqli_query($link,"SELECT * FROM `Applicants` WHERE name LIKE '%" . $name . "%' OR last_name LIKE '%" . $name . "%' LIMIT $offset, $total_records_per_page ");
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>
                                         <td>".$row['name']."</td>
-                                        <td>".$row['description']."</td>
-                                        <td>".$row['address']."</td>
+                                        <td>".$row['last_name']."</td>
+                                        <td>".$row['resume']."</td>
+                                        <td>".$row['email']."</td>
+                                        <td>Outside Applicant</td>
                                         <td><a href='/deleteAssociation.php?id=".$row['association_id'] . "'>" . "DELETE</a></td>
                                       </tr>";
                             }

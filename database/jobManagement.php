@@ -25,7 +25,7 @@
               background-color: #dddddd;
             }
         </style>
-        <title>Company Maintenance</title>
+        <title>Job Maintenance</title>
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,9 +50,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="/associationManagement.php">Manage Associations</a>
-                <a class="dropdown-item active" href="/companyManagement.php">Manage Companies<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item" href="/companyManagement.php">Manage Companies</a>
                 <a class="dropdown-item" href="/employeeManagement.php">Manage Employees</a>
-                <a class="dropdown-item" href="/jobManagement.php">Manage Jobs</a>
+                <a class="dropdown-item active" href="/jobManagement.php">Manage Jobs<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item" href="/applicationManagement.php">Manage Applicants</a>
                 <a class="dropdown-item" href="/committeeManagement.php">Manage Committees</a>
                 </div>
@@ -71,15 +71,15 @@
         </div>
     </nav>
 
-        <h1 style="margin-left:1%">Company Management</h1>
+        <h1 style="margin-left:1%">Job Management</h1>
 		<div class="card text-center">
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-                        <a class="nav-link active" href="/companyManagement.php">Manage Companies</a>
+                        <a class="nav-link active" href="/jobManagement.php">Manage Jobs</a>
 					</li>
 					<li class="nav-item">
-                        <a class="nav-link" href="/createCompany.php">Create New Company</a>
+                        <a class="nav-link" href="/createJob.php">Create New Job</a>
 					</li>
 				</ul>
 			</div>
@@ -87,10 +87,10 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Address</th>
                             <th>Description</th>
-                            <th>Association</th>
+                            <th>Closing Date</th>
+                            <th>Status</th>
+                            <th>Company</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -110,21 +110,22 @@
                             $next_page = $page_no + 1;
                             $adjacents = "4"; 
 
-                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Company`");
+                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Job Opening`");
                             $total_records = mysqli_fetch_array($result_count);
                             $total_records = $total_records['total_records'];
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
                             $second_last = $total_no_of_pages - 1; // total page minus 1
                             
-                            $result = mysqli_query($link,"SELECT Company.company_name, Company.company_address, Company.company_description, Association.name FROM Company INNER JOIN Association ON Company.association_id=Association.association_id LIMIT $offset, $total_records_per_page");
+                            $result = mysqli_query($link,"SELECT `Job Opening`.description, `Job Opening`.date, `Job Opening`.status, Company.company_name FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id LIMIT $offset, $total_records_per_page");
                             while($row = mysqli_fetch_array($result)){
-                                echo "<tr>
+
+                                    echo "<tr>
+                                        <td>".$row['description']."</td>
+                                        <td>".$row['date']."</td>
+                                        <td>".$row['status']."</td>
                                         <td>".$row['company_name']."</td>
-                                        <td>".$row['company_address']."</td>
-                                        <td>".$row['company_description']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td><a href='/deleteCompany.php?id=".$row['company_id'] . "'>" . "DELETE</a></td>
-                                      </tr>";
+                                        <td><a href='/deleteJob.php?id=".$row['opening_id'] . "'>" . "DELETE</a></td>
+                                      </tr>";   
                             }
                             ?>
                     </tbody>

@@ -1,40 +1,38 @@
 <?php
-$_SESSION['ID_Number'] = "";
-/*Set up a database connection*/
-require_once '../database/connect.php';
+/*Sets up database connection*/
+require_once "connect.php";
 
-if(isset($_POST['login'])) {
-    /*Create connection object*/
-    $conn = mysqli_connect('127.0.0.1', 'root', 'root', 'test');
-
-    /*Creates variables for the values input in the form in Login.html*/
+if(isset($_POST['admnlogin'])) {
+    /*Creates connection obect*/
+    
+    /*Creates variables for the values input in the formin EmployerLogin.html*/
     $username = $_POST['user_id'];
-    $password = $_POST['user_num'];
-
+    $password = $_POST['user_pass'];
+    
     /*Checks if either field is empty*/
-    if(empty($username) || empty($password)){
-        header("/Login.html?error=EmptyFields&user_id=".$username);
+    if(empty($username) || empty($password)) {
+        header("Location: ../EmployerLogin.html?error=EmptyFields&user_id=".$username);
         exit();
     }
     else{
         
         /*Checks if $username exists either as an ID Number or Email*/
-        $sql = "SELECT * FROM Applicants WHERE applicants_id=? OR email=?;";
-        $stmt = mysqli_stmt_init($conn);
-        if(!mysql_stmt_prepare($stmt, $sql)){
-            header("Location: ../Login.html?error=NoSuchUser");
+        $sql = "SELECT * FROM Employee WHERE employee_id=$username OR emp_email=$username";
+        $stmt = mysqli_stmt_init($link);
+        if(!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: ../EmployerLogin.html?error=NoSuchUser");
             exit();
         }
         else{
             
             /*Checks if password matches stored password for username*/
             mysqli_stmt_bind_param($stmt, "ss", $username, $username);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
+            mysqli_execute($stmt);
+            $result = mysqli_fetch_assoc($result);
             if($row = mysqli_fetch_assoc($result)) {
                 $passcheck = password_verify($password, $row['password']);
                 if($passcheck == false) {
-                    header("Location: ../Login.html?error=IncorrectPass");
+                    header("Location: ../EmployerLogin.html?error=IncorrectPass");
                     exit();
                 }
                 else {
@@ -43,7 +41,7 @@ if(isset($_POST['login'])) {
                     session_start();
                     $_SESSION['ID_Number']=$row['applicants_id'];
                     $_SESSION['User_Email']=$row['email'];
-                    header("Location: ../index.php");
+                    header("Location: /employerIndex.php");
                 }
             }
         }
@@ -51,7 +49,7 @@ if(isset($_POST['login'])) {
 }
 
 else{
-    header("Location: ../Login.html");
+    header("Location: /EmployerLogin.html");
     exit();
 }
 ?>
