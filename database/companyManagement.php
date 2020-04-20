@@ -28,30 +28,48 @@
         <title>Company Maintenance</title>
     </head>
     <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteName</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">ROCS.sa JobSearch</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/index.php">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reporting">Reporting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/applicantSearch.php">Applicant Search</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Database Maintenance
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/associationManagement.php">Manage Associations</a>
+                <a class="dropdown-item active" href="/companyManagement.php">Manage Companies<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item" href="/employeeManagement.php">Manage Employees</a>
+                <a class="dropdown-item" href="/jobManagement.php">Manage Jobs</a>
+                <a class="dropdown-item" href="/applicationManagement.php">Manage Applicants</a>
+                <a class="dropdown-item" href="/committeeManagement.php">Manage Committees</a>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="/database/index.php">Home</a></li>
-                    <li><a href="/database/reporting">Reporting</a></li>
-                    <li><a href="/database/searchCommitteeSearch">Search Committee Search</a></li>
-                    <li><a href="/database/applicantSearch">Applicant Search</a></li>
-                    <li class="active"><a href="/database/maintenance.html">Database Maintenance</a></li>
-                </ul>
-            </div>
-        </nav>
+            </li>
+            </ul>
+        </div>
+    </nav>
 
         <h1 style="margin-left:1%">Company Management</h1>
 		<div class="card text-center">
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-                        <a class="nav-link active" href="/database/companyManagement.php">Manage Companies</a>
+                        <a class="nav-link active" href="/companyManagement.php">Manage Companies</a>
 					</li>
 					<li class="nav-item">
-                        <a class="nav-link" href="/database/createCompany.php">Create New Company</a>
+                        <a class="nav-link" href="/createCompany.php">Create New Company</a>
 					</li>
 				</ul>
 			</div>
@@ -87,14 +105,14 @@
                             $total_records = $total_records['total_records'];
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
                             $second_last = $total_no_of_pages - 1; // total page minus 1
-
-                            $result = mysqli_query($link,"SELECT c.company_id, c.name, c.address, c.description, a.name, a.address, a.description FROM Company c JOIN Association a ON a.association_id = c.association_id(fk) LIMIT $offset, $total_records_per_page");
+                            
+                            $result = mysqli_query($link,"SELECT Company.company_name, Company.company_address, Company.company_description, Association.name FROM Company INNER JOIN Association ON Company.association_id=Association.association_id LIMIT $offset, $total_records_per_page");
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>
+                                        <td>".$row['company_name']."</td>
+                                        <td>".$row['company_address']."</td>
+                                        <td>".$row['company_description']."</td>
                                         <td>".$row['name']."</td>
-                                        <td>".$row['address']."</td>
-                                        <td>".$row['description']."</td>
-                                        <td>".$row['association.name']."</td>
                                         <td><a href='/deleteAssociation.php?id=".$row['company_id'] . "'>" . "DELETE</a></td>
                                       </tr>";
                             }

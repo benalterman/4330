@@ -5,16 +5,16 @@
     
     $id = $_GET['id'];
     
-    $sql = "DELETE FROM Association WHERE association_id='";
+    $sql = "DELETE FROM Company WHERE company_id='";
     $sql .= $id . "'";
     
     if(mysqli_query($link, $sql)){
         print("Successfully deleted");
-        echo "<script>location.href='associationManagement.php'</script>";
+        echo "<script>location.href='companyManagement.php'</script>";
     }
     else{
         print("Failed");
         print(mysqli_error($link));
-        echo "<script>location.href='failedToDeleteAssociation.php?error=" . mysqli_error($link) . "'</script>";
+        echo "<script>location.href='failedToDelete.php?error=" . mysqli_error($link) . "'</script>";
     }
 ?>
