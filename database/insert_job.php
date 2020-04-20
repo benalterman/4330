@@ -2,6 +2,7 @@
     require_once 'connect.php';
     
     $description = $_REQUEST['description'];
+    $salary = $_REQUEST['salary'];
     $date = $_REQUEST['date'];
     if($date <= date("Y-m-d")){
         $status = "Closed";
@@ -11,10 +12,11 @@
     }
     $company = $_REQUEST['comp_id'];
     
-    $sql = "INSERT INTO `Job Opening` (`opening_id`, `description`, `date`, `status`, `comp_id`) VALUES ";
+    $sql = "INSERT INTO `Job Opening` (`opening_id`, `description`, `date`, `status`, `salary`, `comp_id`) VALUES ";
     $sql .= "(NULL, '" . $description . "', ";
     $sql .= "'" . $date . "', ";
     $sql .= "'" . $status . "', ";
+    $sql .= "'" . $salary . "', ";
     $sql .= "'" . $company . "')";
     
     //print $sql

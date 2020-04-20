@@ -1,52 +1,39 @@
 <?php
-/*Sets up database connection*/
+/*Set up a database connection*/
 require_once "connect.php";
+session_unset();
+session_destroy();
 
 if(isset($_POST['admnlogin'])) {
-    /*Creates connection obect*/
-    
-    /*Creates variables for the values input in the formin EmployerLogin.html*/
-    $username = $_POST['user_id'];
-    $password = $_POST['user_pass'];
-    
+    /*Create connection object*/
+
+
+    /*Creates variables for the values input in the form in Login.html*/
+    $username = $_REQUEST['user_id'];
+    $password = $_REQUEST['user_pass'];
+
     /*Checks if either field is empty*/
-    if(empty($username) || empty($password)) {
-        header("Location: ../EmployerLogin.html?error=EmptyFields&user_id=".$username);
+    if(empty($username) || empty($password)){
+        header("Location: /EmployerLogin.html?error=EmptyFields");
         exit();
     }
     else{
-        
         /*Checks if $username exists either as an ID Number or Email*/
-        $sql = "SELECT * FROM Employee WHERE employee_id=$username OR emp_email=$username";
-        $stmt = mysqli_stmt_init($link);
-        if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../EmployerLogin.html?error=NoSuchUser");
-            exit();
+        $result_count = mysqli_query($link,"SELECT COUNT(*) As total FROM `Search Committee` WHERE sc_email='$username' AND sc_password='$password'");
+        $total = mysqli_fetch_array($result_count);
+        $total = $total['total'];
+        if($total==0){
+                header("Location: /EmployerLogin.html?error=InvalidUserNameOrPassword");
+                exit();
         }
         else{
-            
-            /*Checks if password matches stored password for username*/
-            mysqli_stmt_bind_param($stmt, "ss", $username, $username);
-            mysqli_execute($stmt);
-            $result = mysqli_fetch_assoc($result);
-            if($row = mysqli_fetch_assoc($result)) {
-                $passcheck = password_verify($password, $row['password']);
-                if($passcheck == false) {
-                    header("Location: ../EmployerLogin.html?error=IncorrectPass");
-                    exit();
-                }
-                else {
-                    
-                    /*Starts session and creates session variables for the user to use while logged into the website*/
-                    session_start();
-                    $_SESSION['ID_Number']=$row['applicants_id'];
-                    $_SESSION['User_Email']=$row['email'];
-                    header("Location: /employerIndex.php");
-                }
+                /*Starts session and creates session variables for the user to use while logged into the website*/
+                session_start();
+                $_SESSION["ID_Number"]=$username;
+                header("Location: /employerWelcome.php");
             }
         }
     }
-}
 
 else{
     header("Location: /EmployerLogin.html");

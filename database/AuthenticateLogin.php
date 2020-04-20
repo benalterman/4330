@@ -3,12 +3,12 @@ require "connect.php";
 
 if(isset($_POST['user_id']) and isset($_POST[user_pass])){
 
-    $username = $_POST['user_id'];
-    $password = $_POST['user_pass'];
+    $username = $_REQUEST['user_id'];
+    $password = $_REQUEST['user_pass'];
 
-    $query = "SELECT * FROM 'user_login' WHERE Username='$username' and Password='$password'";
+    $query = "SELECT * FROM Applicants WHERE Username='$username' and Password='$password'";
 
-    $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+    $result = mysqli_query($list, $query) or die(mysqli_error($connection));
     $count = mysqli_num_rows($result);
 
     if ($count == 1){

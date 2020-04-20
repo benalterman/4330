@@ -47,7 +47,7 @@
                 <a class="nav-link" href="/employerWelcome.php">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reporting.php">Reporting</a>
+                <a class="nav-link" href="/profileManagement.php">My Profile</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/jobSearch.php">Job Search<span class="sr-only">(current)</span></a>
@@ -70,7 +70,7 @@
         <div class="card text-right">
         <div class="card-header">
             <form method='GET' action="<?php echo $_SERVER['$PHP_SELF'];?>">
-                <input type="text" value="" name="name" placeholder="Keyword">
+                <input type="text" value="" name="name" placeholder="<?php echo "$name"; ?>">
                 <input type='submit' value='Search'>
             </form>
 			</div>
@@ -81,7 +81,7 @@
                     <thead>
                         <tr>
                             <th>Description</th>
-                            <th>Date</th>
+                            <th>Salary</th>
                             <th>Status</th>
                             <th>Company</th>
                             <th></th>
@@ -107,20 +107,20 @@
                             $next_page = $page_no + 1;
                             $adjacents = "4"; 
                             
-                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id WHERE description LIKE '%" . $name . "%'");
+                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id WHERE description LIKE '%" . $name . "%' OR company_name LIKE '%" . $name . "%'");
                             $total_records = mysqli_fetch_array($result_count);
                             $total_records = $total_records['total_records'];
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
                             $second_last = $total_no_of_pages - 1; // total page minus 1
                             
-                            $result = mysqli_query($link,"SELECT `Job Opening`.description, `Job Opening`.date, `Job Opening`.status, Company.company_name FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id WHERE description LIKE '%" . $name . "%' LIMIT $offset, $total_records_per_page ");
+                            $result = mysqli_query($link,"SELECT `Job Opening`.description, `Job Opening`.salary, `Job Opening`.status, Company.company_name FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id WHERE description LIKE '%" . $name . "%' OR company_name LIKE '%" . $name . "%' LIMIT $offset, $total_records_per_page ");
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>
                                         <td>".$row['description']."</td>
-                                        <td>".$row['date']."</td>
+                                        <td>".$row['salary']."</td>
                                         <td>".$row['status']."</td>
                                         <td>".$row['company_name']."</td>
-                                        <td><a href='/deleteJob.php?id=".$row['opening_id'] . "'>" . "DELETE</a></td>
+                                        <td><a href='/applyJob.php?id=".$row['opening_id'] . "&UserID=".$_SESSION['ID_Number']."'>" . "APPLY</a></td>
                                       </tr>";
                             }
                             ?>

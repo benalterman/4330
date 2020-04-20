@@ -2,7 +2,7 @@
     if(isset($_POST['name'])){
         $name = $_POST["name"];
     }
-    $_SESSION['ID_Number'] = "tyler";
+    session_start();
 ?>
 
 <!DOCTYPE html>
