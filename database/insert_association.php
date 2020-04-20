@@ -20,5 +20,5 @@
         print($sql);
     }
     
-    echo "<script>location.href='associationManagement.php'</script>";
+    echo "<script>location.href='/database/associationManagement.php'</script>";
 ?>

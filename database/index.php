@@ -14,13 +14,12 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteName</a>
+                    <a class="navbar-brand" href="/database/index.php">WebSiteName</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/database/index.php">Home</a></li>
                     <li><a href="/database/reporting">Reporting</a></li>
-                    <li><a href="/search/jobSearch.html">Job Search</a></li>
-                    <li><a href="/search/applicantSearch.html">Applicant Search</a></li>
+                    <li><a href="/database/search.php">Search</a></li>
                     <li><a href="/database/maintenance.html">Database Maintenance</a></li>
                 </ul>
             </div>

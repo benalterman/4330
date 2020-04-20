@@ -20,7 +20,7 @@
         <p><?php echo $error ?></p>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-default" href="/associationManagement.php">Close</a>
+        <a class="btn btn-default" href="/database/associationManagement.php">Close</a>
       </div>
     </div>
   </div>

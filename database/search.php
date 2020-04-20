@@ -37,9 +37,9 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/index.php">Home</a></li>
-                    <li><a href="/reporting">Reporting</a></li>
-                    <li><a href="/search">Search</a></li>
-                    <li><a href="/maintenance.html">Database Maintenance</a></li>
+                    <li><a href="/database/reporting">Reporting</a></li>
+                    <li><a href="/database/search">Search</a></li>
+                    <li><a href="/database/maintenance.html">Database Maintenance</a></li>
                 </ul>
             </div>
         </nav>

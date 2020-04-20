@@ -18,11 +18,11 @@
                     <a class="navbar-brand" href="#">WebSiteName</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/index.php">Home</a></li>
-                    <li><a href="/reporting">Reporting</a></li>
-                    <li><a href="/searchCommitteeSearch">Search Committee Search</a></li>
-                    <li><a href="/applicantSearch">Applicant Search</a></li>
-                    <li><a href="/maintenance.html">Database Maintenance</a></li>
+                    <li><a href="/database/index.php">Home</a></li>
+                    <li><a href="/database/reporting">Reporting</a></li>
+                    <li><a href="/database/searchCommitteeSearch">Search Committee Search</a></li>
+                    <li><a href="/database/applicantSearch">Applicant Search</a></li>
+                    <li><a href="/database/maintenance.html">Database Maintenance</a></li>
                 </ul>
             </div>
         </nav>
@@ -32,16 +32,16 @@
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-					  <a class="nav-link" href="/companyManagement.php">Manage Company</a>
+					  <a class="nav-link" href="/database/companyManagement.php">Manage Company</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link active" href="/createCompany.php">Create New Company</a>
+					  <a class="nav-link active" href="/database/createCompany.php">Create New Company</a>
 					</li>
 				</ul>
 			</div>
 			<div class="card-body">
 				<div id="container">
-                    <form action="/insert_company.php" method="post">
+                    <form action="/database/insert_company.php" method="post">
                         <div class=row style="margin-left:1%">
                             <div class="col-3">
                                 <div class="input-group input-group-sm mb-3">

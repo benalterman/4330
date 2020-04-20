@@ -34,11 +34,11 @@
                     <a class="navbar-brand" href="#">WebSiteName</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/index.php">Home</a></li>
-                    <li><a href="/reporting">Reporting</a></li>
-                    <li><a href="/searchCommitteeSearch">Search Committee Search</a></li>
-                    <li><a href="/applicantSearch">Applicant Search</a></li>
-                    <li class="active"><a href="/maintenance.html">Database Maintenance</a></li>
+                    <li><a href="/database/index.php">Home</a></li>
+                    <li><a href="/database/reporting">Reporting</a></li>
+                    <li><a href="/database/searchCommitteeSearch">Search Committee Search</a></li>
+                    <li><a href="/database/applicantSearch">Applicant Search</a></li>
+                    <li class="active"><a href="/database/maintenance.html">Database Maintenance</a></li>
                 </ul>
             </div>
         </nav>
@@ -48,10 +48,10 @@
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-                        <a class="nav-link active" href="/associationManagement.php">Manage Associations</a>
+                        <a class="nav-link active" href="/database/associationManagement.php">Manage Associations</a>
 					</li>
 					<li class="nav-item">
-                        <a class="nav-link" href="/createAssociation.php">Create New Association</a>
+                        <a class="nav-link" href="/database/createAssociation.php">Create New Association</a>
 					</li>
 				</ul>
 			</div>
