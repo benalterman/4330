@@ -1,6 +1,6 @@
 <?php
-    if(isset($_POST['keyword'])){
-        $keyword = $_POST["keyword"];
+    if(isset($_POST['name'])){
+        $name = $_POST["name"];
     }
     $_SESSION['ID_Number'] = "tyler";
 ?>
@@ -44,10 +44,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/applicantWelcome.php">Home </a>
+                <a class="nav-link" href="/employerWelcome.php">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reporting.php">Dashboard</a>
+                <a class="nav-link" href="/reporting.php">Reporting</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/jobSearch.php">Job Search<span class="sr-only">(current)</span></a>
@@ -70,7 +70,7 @@
         <div class="card text-right">
         <div class="card-header">
             <form method='GET' action="<?php echo $_SERVER['$PHP_SELF'];?>">
-                <input type="text" value="" name="keyword" placeholder="Enter keyword">
+                <input type="text" value="" name="name" placeholder="Keyword">
                 <input type='submit' value='Search'>
             </form>
 			</div>
@@ -81,6 +81,7 @@
                     <thead>
                         <tr>
                             <th>Description</th>
+                            <th>Date</th>
                             <th>Status</th>
                             <th>Company</th>
                             <th></th>
@@ -95,8 +96,8 @@
                             } else {
                                 $page_no = 1;
                             }
-                            if (isset($_GET['keyword']) && $_GET['keyword']!="") {
-                                $keyword = $_GET['keyword'];
+                            if (isset($_GET['name']) && $_GET['name']!="") {
+                                $name = $_GET['name'];
                             } else {
                                 
                             }
@@ -106,20 +107,20 @@
                             $next_page = $page_no + 1;
                             $adjacents = "4"; 
                             
-                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Job Openings` WHERE description LIKE '%" . $name . "%' OR company LIKE '%" .$name . "%'");
+                            $result_count = mysqli_query($link,"SELECT COUNT(*) As total_records FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id WHERE description LIKE '%" . $name . "%'");
                             $total_records = mysqli_fetch_array($result_count);
                             $total_records = $total_records['total_records'];
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
                             $second_last = $total_no_of_pages - 1; // total page minus 1
                             
-                            $result = mysqli_query($link, "SELECT `Job Opening`.description, `Job Opening`.date, `Job Opening`.status, Company.name FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id FROM `Job Openings` LIMIT $offset, $total_records_per_page");
+                            $result = mysqli_query($link,"SELECT `Job Opening`.description, `Job Opening`.date, `Job Opening`.status, Company.company_name FROM `Job Opening` INNER JOIN Company ON `Job Opening`.comp_id=Company.company_id WHERE description LIKE '%" . $name . "%' LIMIT $offset, $total_records_per_page ");
                             while($row = mysqli_fetch_array($result)){
                                 echo "<tr>
                                         <td>".$row['description']."</td>
+                                        <td>".$row['date']."</td>
                                         <td>".$row['status']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td>Outside Applicant</td>
-                                        <td><a href='/deleteAssociation.php?id=".$row['association_id'] . "'>" . "DELETE</a></td>
+                                        <td>".$row['company_name']."</td>
+                                        <td><a href='/deleteJob.php?id=".$row['opening_id'] . "'>" . "DELETE</a></td>
                                       </tr>";
                             }
                             ?>
