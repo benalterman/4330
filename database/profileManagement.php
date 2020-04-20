@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -37,26 +37,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/employerWelcome.php">Home </a>
+                <a class="nav-link" href="/applicantWelcome.php">Home </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/profileManagement.php">My Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reporting">Reporting</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/applicantSearch.php">Applicant Search</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Database Maintenance
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="/associationManagement.php">Manage Associations</a>
-                <a class="dropdown-item active" href="/companyManagement.php">Manage Companies<span class="sr-only">(current)</span></a>
-                <a class="dropdown-item" href="/employeeManagement.php">Manage Employees</a>
-                <a class="dropdown-item" href="/jobManagement.php">Manage Jobs</a>
-                <a class="dropdown-item" href="/applicationManagement.php">Manage Applicants</a>
-                <a class="dropdown-item" href="/committeeManagement.php">Manage Committees</a>
-                </div>
+                <a class="nav-link" href="/jobSearch.php">Job Search</a>
             </li>
             </ul>
         </div>
@@ -72,18 +59,19 @@
         </div>
     </nav>
         
-        <h1 style="margin-left:1%">Company Management</h1>
-		<div class="card text-center">
+        <h1 style="margin-left:1%">Edit Profile</h1>
+        <div class="card text-center">
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-					  <a class="nav-link" href="/companyManagement.php">Manage Company</a>
+                        <a class="nav-link active" href="/profileManagement.php">My Profile</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link active" href="/createCompany.php">Create New Company</a>
+                        <a class="nav-link" href="/EditProfileApplicant.php">Edit Profile</a>
 					</li>
 				</ul>
 			</div>
+		<div class="card text-center">
 			<div class="card-body">
 				<div id="container">
                     <form action="/insert_company.php" method="post">
@@ -91,51 +79,58 @@
                             <div class="col-3">
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="company_name">Name</span>
+                                        <span class="input-group-text" id="name">First Name</span>
                                     </div>
-                                    <input type="text" class="form-control" id="company_name" name="company_name">
+                                    <input type="text" class="form-control" id="name" name="name">
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="company_Description">Description</span>
+                                        <span class="input-group-text" id="last_name">Last Name</span>
                                     </div>
-                                    <input type="text" class="form-control" id="company_description" name="company_description">
+                                    <input type="text" class="form-control" id="last_name" name="last_name">
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="Address">Address</span>
+                                        <span class="input-group-text" id="resume">Resume</span>
                                     </div>
-                                    <input type="text" class="form-control" id="company_address" name="company_address">
+                                    <input type="text" class="form-control" id="resume" name="resume">
                                 </div>
                             </div>
                             
                             <div class="col-3">
                                 <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                        <span class="input-group-text" id="Association_id">Association</span>
+                                        <span class="input-group-text" id="email">Email</span>
                                     </div>
-                                    <select class="form-control" id="association_id" name="association_id">
-                                        <?php
-                                        require "connect.php";
-                                        $result = mysqli_query($link,"SELECT * FROM `Association`");
-                                        while($row = mysqli_fetch_array($result)){
-                                            echo "<option value='".$row['association_id']."'>".$row['name']."</option>";
-                                        }
-                                        ?>   
-                                    </select>
+                                    <input type="email" class="form-control" id="email" name="resume">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left:1%">
+                            <div class="col-3">
+                                <div class="text-center">
+                                    <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                                    <h6>Upload a different photo...</h6>
+                                    <input type="file" class="form-control" id="photo" name="photo">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="text-center">
+                                    <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                                    <h6>Upload a different photo...</h6>
+                                    <input type="file" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <br/>
-                        <button type="submit" class="btn btn-primary">Create Company</button>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
                     </form>
                 </div>
 			</div>
         </div>
-        
 	</body>
 </html>

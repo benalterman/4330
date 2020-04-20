@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -98,9 +99,17 @@
                             <div class="col-3">
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="Date">Date</span>
+                                        <span class="input-group-text" id="Date">Open Until</span>
                                     </div>
                                     <input type="date" class="form-control" id="date" name="date">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="Salary">Yearly Salary</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="salary" name="salary">
                                 </div>
                             </div>
                             <div class="col-3">
