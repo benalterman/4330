@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  padding: 10px;
+  text-align: left;
+  background: black;
+  color: white;
+}
+
+/* Increase the font size of the h1 element */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align:center;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.navbar b {
+  float: left;
+  display: block;
+  color: white;
+  background: black;
+  text-align: center;
+  padding: 15px 25px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Change color on hover */
+.navbar b:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+/* .row {  
+ /*  display: flex;
+ /*  flex-wrap: wrap;
+}
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+/*.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width:100%;
+  }
+}
+.navbar .search-container button:hover {
+  background: #ccc;
+}
+
+
+@media screen and (max-width: 600px) {
+  .navbar a, .navbar input[type=text], .navbar .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  
+ .navbar input[type=text] {
+    border: 1px solid #ccc;  
+  }
+  
+.navbar .search-container {
+  float: right;
+}
+
+.navbar input[type=text] {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
+}
+
+
+.navbar .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .search-container button:hover {
+  background: #ccc;
+}
+}
+@media screen and (max-width: 600px) {
+  .navbar .search-container {
+    float: none;
+  }
+  .navbar a, .navbar input[type=text], .navbar .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .navbar input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#">Jobs</a>
+  <a href="#">Messaging</a>
+  <a href="#">Notifications</a>
+  <a href="#" class="right">Profile</a>
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+
+<div class="navbar">
+  <b href="#">Job Search</b>
+  <b href="#">Company Search</b>
+  <b href="#">Career Search</b>
+</div>
+
+<div class="container">
+    <h1>Edit Profile</h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <div class="text-center">
+                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                <h6>Upload a different photo...</h6>
+                <input type="file" class="form-control">
+            </div>
+        </div>
+        <!-- edit form column -->
+            <h3>Personal info</h3>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">First name:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Company:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-lg-3 control-label">Job Title:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+                    </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Education:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+            </div>
+            <div class="form-group">
+                    <label class="col-lg-3 control-label">Years of Experience:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="">
+            </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Skills:</label>
+                    <div class="col-lg-8">
+                <input class="form-control" type="text" value="">
+                </textarea name="myTextBox" cols="70" rows="20">
+                    </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Interests:</label>
+                    <div class="col-lg-8">
+                        <div class="ui-select">
+                            <select id="user_interests" class="form-control">
+                                <option value="Accounting">Accounting</option>
+                                <option value="Advertising"> Advertising</option>
+                                <option value="Architecture">Architecture</option>
+                                <option value="Biotech & Life Sciences">Biotech & Life Sciences</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Commercial & Banking Credit">Commercial & Banking Credit</option>
+                                <option value="Computer Networking">Computer Networking</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Defense">Defense</option>
+                                <option value="Design">Design</option>
+                                <option value="Education">Education</option>
+                                <option value="Electrical & Computer Hardware">Electrical & Computer Hardware</option>
+                                <option value="Environmental Sciences">Environmental Sciences</option>
+                                <option value="Farming">Farming</option>
+                                <option value="Government - Legal, State, Federal">Government - Legal, State, Federal</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Human Resources">Human Resources</option>
+                                <option value="Insurance">Insurance</option>
+                                <option value="Interior Design">Interior Design</option>
+                                <option value="Internet Software">Internet Software</option>
+                                <option value="Journalism, Media, Publishing">Journalism, Media, Publishing</option>
+                                <option value="Legal Law Enforcement">Legal Law Enforcement</option>
+                                <option value="Management Consulting">Management Consulting</option>
+                                <option value="Performing & Fine Arts">Oil & Gas</option>
+                                <option value="Pharmaceuticals">Pharmaceuticals</option>
+                                <option value="Politics">Politics</option>
+                                <option value="Real Estate">Oil & Gas</option>
+                                <option value="Sports & Leisure">Sports & Leisure</option>
+                                <option value="Telecommunications">Telecommunications</option>
+                                <option value="Utilities and Renewable Energy">Utilities and Renewable Energy</option>
+                                <option value="Veterinary">Veterinary</option>
+                                <option value="Wholesome Trade">Wholesome Trade</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="button" class="btn btn-primary" value="Save Changes">
+                        <span></span>
+                        <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+<hr>
